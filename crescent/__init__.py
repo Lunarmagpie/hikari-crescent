@@ -1,3 +1,4 @@
+from typing import Sequence
 from importlib.metadata import version
 
 from crescent.bot import *
