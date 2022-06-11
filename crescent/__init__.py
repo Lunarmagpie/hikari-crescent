@@ -37,7 +37,7 @@ __all__: Sequence[str] = (
     "event",
     "CrescentException",
     "AlreadyRegisteredError",
-    "CommandNotFoundError",
+    "PluginAlreadyLoadedError",
     "Mentionable",
     "CommandCallbackT",
     "CommandOptionsT",
