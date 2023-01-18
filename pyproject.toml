@@ -38,7 +38,7 @@ cron = ["croniter", "types-croniter"]
 cooldowns = ["pycooldown"]
 
 [tool.poetry.group.dev.dependencies]
-flake8 = "^5.0.4"
+ruff = "^0.0.255"
 mypy = "^0.982"
 isort = "^5.10.1"
 black = "^22.6"
@@ -55,6 +55,14 @@ nox = "^2022.8.7"
 line-length = 99
 target-version = ['py38']
 skip-magic-trailing-comma = true
+
+[tool.ruff]
+line-length = 99
+ignore = [
+    # Allow * imports to be used in the module level
+    "F403",
+    "F405",
+]
 
 [tool.mypy]
 python_version = 3.8

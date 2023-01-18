@@ -26,7 +26,7 @@ from crescent.locale import LocaleBuilder, str_or_build_locale
 from crescent.utils import gather_iter, unwrap
 
 if TYPE_CHECKING:
-    from typing import Any, Awaitable, Callable, DefaultDict, Iterable, Sequence
+    from typing import Any, Callable, DefaultDict, Iterable, Sequence, Awaitable  # noqa: F401
 
     from hikari import PartialGuild, Snowflakeish, SnowflakeishOr
 

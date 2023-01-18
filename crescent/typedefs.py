@@ -28,8 +28,8 @@ from hikari.api import EntityFactory
 
 if TYPE_CHECKING:
     from crescent.commands.hooks import HookResult
-    from crescent.context import BaseContext
-    from crescent.mentionable import Mentionable
+    from crescent.context import BaseContext  # noqa: F401
+    from crescent.mentionable import Mentionable  # noqa: F401
 
 __all__: Sequence[str] = (
     "CommandCallbackT",
