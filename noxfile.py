@@ -35,7 +35,7 @@ def pip_session(*args: str, name: str | None = None) -> typing.Callable[[nox.Ses
 def apply_lint(session: nox.Session) -> None:
     session.run("black", "crescent")
     session.run("isort", "crescent")
-    session.run("codespell", "crescent", "-i", "2")
+    session.run("codespell", "crescent", "-i", "2", "-w")
 
 
 @pip_session("black", "codespell", "flake8", "isort")
