@@ -38,7 +38,7 @@ cron = ["croniter", "types-croniter"]
 cooldowns = ["pycooldown"]
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.0.255"
+ruff = "^0.0.225"
 mypy = "^0.982"
 isort = "^5.10.1"
 black = "^22.6"
