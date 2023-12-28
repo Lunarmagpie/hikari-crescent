@@ -13,16 +13,13 @@ if TYPE_CHECKING:
     from crescent.client import Client, GatewayTraits, RESTTraits
     from crescent.typedefs import HookCallbackT, PluginCallbackT
 
+    BotT = TypeVar("BotT", bound="GatewayTraits | RESTTraits", default=GatewayTraits)
+    ModelT = TypeVar("ModelT", default=None)
+
 __all__: Sequence[str] = ("PluginManager", "Plugin")
 
 
 T = TypeVar("T", bound="Includable[Any]")
-
-# NOTE: When mypy supports PEP 696 (type var defaults) a `default="GatewayTraits"` kwarg
-# should be added to improve ergonomics.
-BotT = TypeVar("BotT", bound="GatewayTraits | RESTTraits")
-ModelT = TypeVar("ModelT")
-
 
 _LOG = getLogger(__name__)
 
@@ -34,7 +31,7 @@ class PluginManager:
     property when you construct a `Client` object.
     """
 
-    def __init__(self, client: Client) -> None:
+    def __init__(self, client: Client[Any]) -> None:
         self.plugins: dict[str, Plugin[Any, Any]] = {}
         self._client = client
 

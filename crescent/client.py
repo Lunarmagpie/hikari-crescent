@@ -5,7 +5,7 @@ from contextlib import suppress
 from functools import partial
 from itertools import chain
 from traceback import print_exception
-from typing import TYPE_CHECKING, Protocol, overload, runtime_checkable
+from typing import TYPE_CHECKING, Protocol, overload, runtime_checkable, Generic
 
 from hikari import AutocompleteInteraction, AutocompleteInteractionOption, CommandInteraction
 from hikari import Event as hk_Event
@@ -41,6 +41,7 @@ if TYPE_CHECKING:
     )
 
     INCLUDABLE = TypeVar("INCLUDABLE", bound=Includable[Any])
+    ModelT = TypeVar("ModelT", default=None)
 
 
 __all__: Sequence[str] = ("Client", "GatewayTraits", "RESTTraits")
@@ -56,7 +57,7 @@ class RESTTraits(InteractionServerAware, RESTAware, Protocol):
     """The base traits crescents requires for a REST-based bot."""
 
 
-class Client:
+class Client(Generic[ModelT]):
     """
     The client object is a wrapper around your bot that lets you use
     Crescent's features.
@@ -83,7 +84,7 @@ class Client:
     def __init__(
         self,
         app: RESTTraits | GatewayTraits,
-        model: Any = None,
+        model: ModelT = None,
         *,
         tracked_guilds: Sequence[Snowflakeish] | None = None,
         default_guild: Snowflakeish | None = None,
