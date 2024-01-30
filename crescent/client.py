@@ -228,6 +228,8 @@ class Client:
         if obj is None:
             return self.include
 
+        obj.register_to_client(self)
+
         add_hooks(
             obj,
             self.command_hooks,
@@ -235,8 +237,6 @@ class Client:
             self.event_hooks,
             self.event_after_hooks,
         )
-
-        obj.register_to_client(self)
 
         return obj
 

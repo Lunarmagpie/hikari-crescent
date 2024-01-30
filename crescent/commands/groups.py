@@ -92,8 +92,11 @@ class Group:
 
         includable.metadata.group = self
 
-        includable.metadata.add_hooks(self.hooks, after=False)
-        includable.metadata.add_hooks(self.after_hooks, after=True)
+        def add_hooks(includable: Includable[AppCommandMeta]):
+            includable.metadata.add_hooks(self.hooks, prepend=True, after=False)
+            includable.metadata.add_hooks(self.after_hooks, prepend=True, after=True)
+
+        includable.client_set_hooks.append(add_hooks)
 
         return includable
 
@@ -136,9 +139,12 @@ class SubGroup:
         includable.metadata.group = self.parent
         includable.metadata.sub_group = self
 
-        includable.metadata.add_hooks(self.hooks, after=False)
-        includable.metadata.add_hooks(self.after_hooks, after=True)
-        includable.metadata.add_hooks(self.parent.hooks, after=False)
-        includable.metadata.add_hooks(self.parent.after_hooks, after=True)
+        def add_hooks(includable: Includable[AppCommandMeta]):
+            includable.metadata.add_hooks(self.hooks, prepend=True, after=False)
+            includable.metadata.add_hooks(self.after_hooks, prepend=True, after=True)
+            includable.metadata.add_hooks(self.parent.hooks, prepend=True, after=False)
+            includable.metadata.add_hooks(self.parent.after_hooks, prepend=True, after=True)
+
+        includable.client_set_hooks.append(add_hooks)
 
         return includable

@@ -86,12 +86,12 @@ def test_command_hook_order():
 
     client.plugins._add_plugin("", plugin)
 
-    assert c1.metadata.hooks == ["command", "client"]
-    assert c2.metadata.hooks == ["command", "group", "client"]
-    assert c3.metadata.hooks == ["command", "subgroup", "group", "client"]
-    assert c4.metadata.hooks == ["command", "plugin", "client"]
-    assert c5.metadata.hooks == ["command", "group", "plugin", "client"]
-    assert c6.metadata.hooks == ["command", "subgroup", "group", "plugin", "client"]
+    assert c1.metadata.hooks == ["client", "command"]
+    assert c2.metadata.hooks == ["client", "group", "command"]
+    assert c3.metadata.hooks == ["client", "group", "subgroup", "command"]
+    assert c4.metadata.hooks == ["client", "plugin", "command"]
+    assert c5.metadata.hooks == ["client", "plugin", "group", "command"]
+    assert c6.metadata.hooks == ["client", "plugin", "group", "subgroup", "command"]
 
 
 def test_command_after_hook_order():
@@ -142,12 +142,12 @@ def test_command_after_hook_order():
 
     client.plugins._add_plugin("", plugin)
 
-    assert c1.metadata.after_hooks == ["command", "client"]
-    assert c2.metadata.after_hooks == ["command", "group", "client"]
-    assert c3.metadata.after_hooks == ["command", "subgroup", "group", "client"]
-    assert c4.metadata.after_hooks == ["command", "plugin", "client"]
-    assert c5.metadata.after_hooks == ["command", "group", "plugin", "client"]
-    assert c6.metadata.after_hooks == ["command", "subgroup", "group", "plugin", "client"]
+    assert c1.metadata.after_hooks == ["client", "command"]
+    assert c2.metadata.after_hooks == ["client", "group", "command"]
+    assert c3.metadata.after_hooks == ["client", "group", "subgroup", "command"]
+    assert c4.metadata.after_hooks == ["client", "plugin", "command"]
+    assert c5.metadata.after_hooks == ["client", "plugin", "group", "command"]
+    assert c6.metadata.after_hooks == ["client", "plugin", "group", "subgroup", "command"]
 
 
 def test_vargs_hooks():
@@ -184,8 +184,8 @@ def test_event_hook_order():
 
     client.plugins._add_plugin("", plugin)
 
-    assert e1.metadata.hooks == ["command", "client"]
-    assert e2.metadata.hooks == ["command", "plugin", "client"]
+    assert e1.metadata.hooks == ["client", "command"]
+    assert e2.metadata.hooks == ["client", "plugin", "command"]
 
 
 def test_event_after_hook_order():
@@ -206,5 +206,5 @@ def test_event_after_hook_order():
 
     client.plugins._add_plugin("", plugin)
 
-    assert e1.metadata.after_hooks == ["command", "client"]
-    assert e2.metadata.after_hooks == ["command", "plugin", "client"]
+    assert e1.metadata.after_hooks == ["client", "command"]
+    assert e2.metadata.after_hooks == ["client", "plugin", "command"]
